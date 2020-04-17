@@ -29,7 +29,13 @@
                         <td>{{ cliente.nome }}</td>
                         <td>{{ cliente.cpf }}</td>
                         <td>{{ cliente.dataCadastro }}</td>
-                        <td></td>
+                        <td>
+                            <button class="btn btn-primary" 
+                                    routerLink="/clientes-form/{{ cliente.id }}">
+                                <i class="fa fa-edit"></i>
+                            </button>
+
+                        </td>
                     </tr>
                 </tbody>
             </table>
