@@ -11,12 +11,12 @@
                     Cliente salvo/atualizado com sucesso!    
                 </div>
                 <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
-                    {{ erro }}    
+                    {{ erro  }}    
                 </div>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" *ngIf="cliente.id">
             <div class="col-md-6">
                 <div class="form-group">
                     <label>ID:</label>
