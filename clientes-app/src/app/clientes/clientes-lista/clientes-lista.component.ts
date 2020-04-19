@@ -4,8 +4,6 @@ import { Router } from '@angular/router'
 import { Cliente } from '../cliente';
 import { ClientesService } from '../../clientes.service'
 
-import jQuery from 'jquery'
-
 @Component({
   selector: 'app-clientes-lista',
   templateUrl: './clientes-lista.component.html',
