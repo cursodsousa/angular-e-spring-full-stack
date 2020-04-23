@@ -1,0 +1,64 @@
+<h1 class="mt-4">Serviço Prestado</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrum-bitem active">Consulta</li>
+</ol>
+<div class="container">
+    <form #consultaForm="ngForm" (submit)="consultar()">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="inputNome">Nome Cliente:</label>
+                <input type="text" [(ngModel)]="nome" 
+                       name="nome" class="form-control"
+                       id="inputNome">
+            </div>
+
+            <div class="col-md-6">
+                <label for="inputMes">Mês:</label>
+                <select [(ngModel)]="mes" class="form-control" name="mes">
+                    <option value="">Selecione...</option>
+                    <option *ngFor="let mes of meses" [value]="mes">
+                        {{ mes }}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-search"></i> Consultar
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <br />
+    <div class="row">
+        <div class="alert alert-warning" role="alert" *ngIf="message">
+            {{ message }}   
+        </div>
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Descrição</th>
+                        <th>Preço</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let s of lista" >
+                        <td>{{ s.cliente.nome }} </td>
+                        <td>{{ s.descricao }} </td>
+                        <td>{{ s.valor }} </td>
+                        <td>{{ s.data }} </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+</div>
