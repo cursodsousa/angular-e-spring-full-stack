@@ -11,19 +11,25 @@ import { ClientesModule } from './clientes/clientes.module';
 import { ClientesService } from './clientes.service'
 import { ServicoPrestadoModule } from './servico-prestado/servico-prestado.module'
 import { ServicoPrestadoService } from './servico-prestado.service'
+import { LayoutComponent } from './layout/layout.component';
+import { LoginComponent } from './login/login.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    LayoutComponent,
+    LoginComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
     TemplateModule,
     ClientesModule,
-    ServicoPrestadoModule
+    ServicoPrestadoModule,
+    AppRoutingModule
   ],
   providers: [
     ClientesService,
