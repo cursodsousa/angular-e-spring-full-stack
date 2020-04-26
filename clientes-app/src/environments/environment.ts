@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  apiURLBase: 'http://localhost:8080'
+  apiURLBase: 'http://localhost:8080',
+  clientId: 'clientes-app',
+  clientSecret: '@321'
 };
 
 /*
