@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './layout/layout.component'
 import { AuthService } from './auth.service';
 import { TokenInterceptor } from './token.interceptor';
+import { JwtModule, JwtHelperService } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
