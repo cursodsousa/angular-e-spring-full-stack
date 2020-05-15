@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Contato } from './contato';
+import { ContatoService } from '../contato.service';
 
 @Component({
   selector: 'app-contato',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContatoComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private service: ContatoService
+  ) { }
 
   ngOnInit(): void {
+    const c : Contato = new Contato();
+    c.nome = 'Francisco'
+    c.email = 'fracisco@email.com'
+    c.favorito = true;
+
+    this.service.save(c).subscribe( resposta => {
+      console.log(resposta);
+    })
+
   }
 
 }
