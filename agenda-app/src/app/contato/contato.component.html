@@ -13,6 +13,18 @@
 
             <table mat-table [dataSource]="contatos" class="full-width">
 
+                <ng-container matColumnDef="foto" >
+                    <th mat-header-cell *matHeaderCellDef class="coluna-foto">  </th>
+                    <td mat-cell *matCellDef="let contato">
+                        <div *ngIf="contato.foto">
+                            <img (click)="visualizarContato(contato)" width="50" height="50" src="data:image/png;base64,{{contato.foto}}" alt=""/>
+                        </div>
+                        <div *ngIf="!contato.foto">
+                            <input type="file" name="foto" (change)="uploadFoto($event, contato)" />
+                        </div>
+                    </td>
+                </ng-container>
+
                 <ng-container matColumnDef="id">
                     <th mat-header-cell *matHeaderCellDef > ID </th>
                     <td mat-cell *matCellDef="let contato"> {{ contato.id }} </td>
@@ -67,7 +79,7 @@
                     <mat-label>Nome: </mat-label>
                     <input formControlName="nome" matInput placeholder="Digite seu nome" />
                 </mat-form-field>
-                <div *ngIf="formulario.controls.nome.errors">
+                <div *ngIf="formulario.controls.nome.errors  && !formulario.controls.nome.pristine">
                     <div *ngIf="formulario.controls.nome.errors.required">
                         Campo nome é obrigatório.
                     </div>
@@ -78,7 +90,7 @@
                     <input formControlName="email" matInput placeholder="Digite seu email" />
                 </mat-form-field>
             
-                <div *ngIf="formulario.controls.email.errors">
+                <div *ngIf="formulario.controls.email.errors && !formulario.controls.email.pristine">
                     <div *ngIf="formulario.controls.email.errors.required">
                         Campo Email é obrigatório
                     </div>

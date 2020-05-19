@@ -11,19 +11,25 @@ import { MatTableModule } from '@angular/material/table'
 import { MatIconModule  } from '@angular/material/icon'
 import { MatCardModule } from '@angular/material/card'
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+
+
 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContatoComponent } from './contato/contato.component';
-import { ContatoService } from './contato.service'
+import { ContatoService } from './contato.service';
+import { ContatoDetailsComponent } from './contato-details/contato-details.component'
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContatoComponent
+    ContatoComponent,
+    ContatoDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +44,8 @@ import { ContatoService } from './contato.service'
     MatIconModule,
     MatCardModule,
     MatPaginatorModule,
+    MatSnackBarModule,
+    MatDialogModule,
     BrowserAnimationsModule
   ],
   providers: [

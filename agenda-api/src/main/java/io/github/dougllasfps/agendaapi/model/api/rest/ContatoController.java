@@ -3,12 +3,16 @@ package io.github.dougllasfps.agendaapi.model.api.rest;
 import io.github.dougllasfps.agendaapi.model.entity.Contato;
 import io.github.dougllasfps.agendaapi.model.repository.ContatoRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Part;
 import java.awt.print.Pageable;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,9 +47,28 @@ public class ContatoController {
     public void favorite( @PathVariable Integer id ){
         Optional<Contato> contato = repository.findById(id);
         contato.ifPresent( c -> {
-            boolean favorito = c.getFavorito() == Boolean.TRUE;
+            boolean favorito = c.getFavorito() == Boolean.  TRUE;
             c.setFavorito(!favorito);
             repository.save(c);
         });
+    }
+
+    @PutMapping("{id}/foto")
+    public byte[] addPhoto(@PathVariable Integer id, @RequestParam("foto")Part part){
+        Optional<Contato> contato = repository.findById(id);
+        return contato.map(c -> {
+            try {
+                InputStream inputStream = part.getInputStream();
+                byte[] bytes = new byte[(int) part.getSize()];
+                IOUtils.readFully(inputStream, bytes );
+                c.setFoto(bytes);
+                repository.save(c);
+                inputStream.close();
+                return bytes;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }).orElse(null);
     }
 }
