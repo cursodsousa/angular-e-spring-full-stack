@@ -30,7 +30,9 @@
 
                 <ng-container matColumnDef="favorito">
                     <th mat-header-cell *matHeaderCellDef>Favorito</th>
-                    <td mat-cell *matCellDef="let contato" >{{ contato.favorito }}</td>
+                    <td mat-cell *matCellDef="let contato" >
+                        <mat-icon>{{ contato.favorito ? 'favorite' : 'favorite_border' }}</mat-icon>
+                    </td>
                 </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="colunas"></tr>
