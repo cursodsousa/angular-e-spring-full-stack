@@ -6,6 +6,10 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { MatButtonModule } from '@angular/material/button'
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatInputModule } from '@angular/material/input'
+import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon'
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +31,9 @@ import { ContatoService } from './contato.service'
     MatInputModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatCardModule,
+    MatTabsModule,
+    MatIconModule,
     BrowserAnimationsModule
   ],
   providers: [
