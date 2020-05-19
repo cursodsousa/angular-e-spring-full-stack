@@ -3,9 +3,12 @@ package io.github.dougllasfps.agendaapi.model.api.rest;
 import io.github.dougllasfps.agendaapi.model.entity.Contato;
 import io.github.dougllasfps.agendaapi.model.repository.ContatoRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,8 +33,10 @@ public class ContatoController {
     }
 
     @GetMapping
-    public List<Contato> list(){
-        return repository.findAll();
+    public Page<Contato> list(
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "size", defaultValue = "10") Integer size){
+        return repository.findAll(PageRequest.of(page, size));
     }
 
     @PatchMapping("{id}/favorito")

@@ -3,6 +3,7 @@ import { Contato } from './contato';
 import { ContatoService } from '../contato.service';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-contato',
@@ -11,8 +12,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 })
 export class ContatoComponent implements OnInit {
 
+  total = 0;
+  pagina = 0;
+  tamanho = 10;
+  pageSizeOptions: number[] = [5];
+
   formulario: FormGroup;
-  contatos: Contato[] = [];
+  contatos: Contato[] = []; 
   colunas = ['id', 'nome', 'email', 'favorito']
 
   constructor(
@@ -25,6 +31,13 @@ export class ContatoComponent implements OnInit {
     this.listarContatos();
   }
 
+  paginar(event: PageEvent){
+    console.log(event)
+    this.pagina = event.pageIndex
+    this.tamanho = event.pageSize;
+    this.listarContatos(this.pagina.toString(), this.tamanho.toString())
+  }
+
   montarFormulario(){
     this.formulario = this.fb.group({
       nome: ['', Validators.required ],
@@ -32,9 +45,11 @@ export class ContatoComponent implements OnInit {
     })  
   }
 
-  listarContatos(){
-    this.service.list().subscribe(response => {
-      this.contatos = response;
+  listarContatos(pagina = '0', tamanho = '10'){
+    this.service.list(pagina, tamanho).subscribe(response => {
+      this.contatos = response.content;
+      this.total = response.totalElements;
+      this.pagina = response.number;
     })
   }
 

@@ -10,6 +10,8 @@ import { MatTabsModule } from '@angular/material/tabs'
 import { MatTableModule } from '@angular/material/table'
 import { MatIconModule  } from '@angular/material/icon'
 import { MatCardModule } from '@angular/material/card'
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,6 +37,7 @@ import { ContatoService } from './contato.service'
     MatTableModule,
     MatIconModule,
     MatCardModule,
+    MatPaginatorModule,
     BrowserAnimationsModule
   ],
   providers: [
